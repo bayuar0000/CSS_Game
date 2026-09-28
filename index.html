@@ -3,159 +3,1058 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSS Challenge — XI RPL</title>
+<title>CSS Challenge XI RPL</title>
+
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#2563eb;--primary2:#1d4ed8;--good:#15803d;--bad:#dc2626;--border:#dbe2ea}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
-.container{max-width:900px;margin:auto;padding:24px}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;box-shadow:0 8px 30px rgba(20,30,50,.06)}
-h1,h2{margin-top:0}.muted{color:var(--muted)} .hidden{display:none}
-.logo{font-weight:800;color:var(--primary);letter-spacing:.5px}.hero{text-align:center;padding:18px 0 8px}
-input[type=text]{width:100%;padding:14px 16px;border:1px solid var(--border);border-radius:12px;font-size:16px;margin:12px 0 18px}
-button{border:0;border-radius:12px;padding:13px 20px;font-size:16px;font-weight:700;cursor:pointer;background:var(--primary);color:white}
-button:hover{background:var(--primary2)} button.secondary{background:#eef2f7;color:var(--text)} button:disabled{opacity:.5;cursor:not-allowed}
-.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
-.progress{height:10px;background:#e9eef5;border-radius:20px;overflow:hidden}.progress>div{height:100%;background:var(--primary);width:0%;transition:.25s}
-.challenge-meta{display:flex;justify-content:space-between;color:var(--muted);font-weight:700;margin:12px 0}
-.question{font-size:21px;line-height:1.45;margin:18px 0}.code{background:#111827;color:#e5e7eb;border-radius:12px;padding:18px;overflow:auto;font-family:Consolas,monospace;font-size:14px;white-space:pre-wrap}
-.options{display:grid;gap:12px;margin-top:18px}.option{background:#fff;color:var(--text);border:1px solid var(--border);text-align:left;font-weight:600}.option:hover{background:#f8fafc}.option.selected{border-color:var(--primary);background:#eff6ff}
-.nav{display:flex;justify-content:space-between;margin-top:24px;gap:10px}.feedback{margin-top:16px;padding:13px;border-radius:12px;background:#f8fafc;border:1px solid var(--border);line-height:1.5}.correct{border-color:#86efac;background:#f0fdf4;color:#166534}.wrong{border-color:#fecaca;background:#fef2f2;color:#991b1b}
-.score{font-size:64px;font-weight:900;color:var(--primary);text-align:center;margin:10px 0}.resultbox{text-align:center}.small{font-size:13px}.config{margin-top:18px;padding:14px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}
-table{width:100%;border-collapse:collapse;margin-top:18px}th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
-@media(max-width:600px){.container{padding:12px}.card{padding:20px}.question{font-size:18px}.score{font-size:52px}}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-secondary {
+    background: #64748b;
+    color: white;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc2626;
+    color: white;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #2563eb;
+    transition: width 0.3s;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    margin: 10px 0;
+}
+
+.option:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.option.selected {
+    background: #dbeafe;
+    border-color: #2563eb;
+}
+
+.feedback {
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.feedback.correct {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.feedback.wrong {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.code-box {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 15px 0;
+    white-space: pre-wrap;
+}
+
+.result-score {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: #2563eb;
+}
+
+.review-item {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 0;
+}
+
+.correct-text {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.wrong-text {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.small {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #64748b;
+    font-size: 13px;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
-  <div class="hero">
-    <div class="logo">XI RPL • CSS CHALLENGE</div>
-    <h1>Dasar-Dasar CSS & Perancangan CSS Sederhana</h1>
-    <p class="muted">15 tantangan • skor maksimal 100 poin • hasil dapat dikirim ke Google Sheets</p>
-  </div>
 
-  <section id="start" class="card">
-    <h2>Siap menguji kemampuanmu?</h2>
-    <p class="muted">Masukkan nama lengkap. Kerjakan 15 tantangan berdasarkan situasi nyata saat membuat halaman web.</p>
-    <label for="name"><b>Nama siswa</b></label>
-    <input id="name" type="text" maxlength="80" placeholder="Contoh: Budi Santoso" autocomplete="name">
-    <button id="startBtn">Mulai Tantangan</button>
-    <div class="config small">Catatan guru: endpoint Google Apps Script dapat diatur pada konstanta <b>GOOGLE_SCRIPT_URL</b> di bagian JavaScript.</div>
-  </section>
+    <!-- HALAMAN AWAL -->
+    <div id="start" class="card">
+        <h1>🎨 CSS Challenge XI RPL</h1>
 
-  <section id="game" class="card hidden">
-    <div class="topbar">
-      <div><b id="playerName"></b><div class="muted small">CSS Challenge XI RPL</div></div>
-      <div><b id="liveScore">0</b> poin</div>
+        <p>
+            Uji kemampuanmu menerapkan dasar-dasar CSS.
+            Terdapat <b>15 tantangan</b> dengan skor maksimal
+            <b>100 poin</b>.
+        </p>
+
+        <label for="name"><b>Nama Siswa</b></label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Masukkan nama lengkap"
+        >
+
+        <button
+            class="btn-primary"
+            id="startBtn"
+        >
+            Mulai Tantangan
+        </button>
+
+        <div class="footer">
+            Dasar-Dasar CSS • Kelas XI RPL
+        </div>
     </div>
-    <div class="progress"><div id="progressBar"></div></div>
-    <div class="challenge-meta"><span id="counter"></span><span id="points"></span></div>
-    <div id="challenge"></div>
-    <div class="nav">
-      <button id="prevBtn" class="secondary">Sebelumnya</button>
-      <button id="nextBtn">Pilih Jawaban</button>
-    </div>
-    <div id="feedback" class="feedback hidden"></div>
-  </section>
 
-  <section id="result" class="card hidden resultbox">
-    <h2>🎉 Tantangan Selesai!</h2>
-    <p class="muted" id="resultName"></p>
-    <div class="score" id="finalScore">0</div>
-    <p id="resultMessage"></p>
-    <div id="saveStatus" class="feedback">Menyimpan hasil...</div>
-    <div id="review"></div>
-    <button id="restartBtn" style="margin-top:20px">Main Lagi</button>
-  </section>
+
+    <!-- HALAMAN GAME -->
+    <div id="game" class="card hidden">
+
+        <p>
+            Peserta:
+            <b id="playerName"></b>
+        </p>
+
+        <div class="progress">
+            <div
+                id="progressBar"
+                class="progress-bar"
+            ></div>
+        </div>
+
+        <div>
+            <b id="counter"></b>
+            <span> • </span>
+            <span id="points"></span>
+        </div>
+
+        <hr>
+
+        <div id="challenge"></div>
+
+        <div
+            id="feedback"
+            class="feedback hidden"
+        ></div>
+
+        <div style="margin-top:20px;">
+            <button
+                id="prevBtn"
+                class="btn-secondary"
+            >
+                ← Sebelumnya
+            </button>
+
+            <button
+                id="nextBtn"
+                class="btn-primary"
+            >
+                Lanjut →
+            </button>
+        </div>
+
+        <p class="small">
+            Skor sementara:
+            <b id="liveScore">0</b>
+        </p>
+
+    </div>
+
+
+    <!-- HALAMAN HASIL -->
+    <div id="result" class="card hidden">
+
+        <h2>🎉 Tantangan Selesai!</h2>
+
+        <p id="resultName"></p>
+
+        <div
+            id="finalScore"
+            class="result-score"
+        >
+            0
+        </div>
+
+        <p id="resultMessage"></p>
+
+        <hr>
+
+        <h3>Review Jawaban</h3>
+
+        <div id="review"></div>
+
+        <button
+            id="restartBtn"
+            class="btn-primary"
+        >
+            🔄 Main Lagi
+        </button>
+
+        <div
+            id="saveStatus"
+            class="feedback"
+        >
+            Menyimpan hasil...
+        </div>
+
+    </div>
+
 </div>
 
+
 <script>
-// GANTI dengan URL Web App Google Apps Script setelah guru melakukan deployment.
-// Contoh: https://script.google.com/macros/s/XXXXXXXX/exec
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwvFYmRUD7focRpfqty7v6KfBvIszvkjKmtZz-ZvyOhdb9CZ0vIkRceO-ClkgXYc8Z3/exec";
+
+/* =====================================================
+   PENGATURAN GOOGLE APPS SCRIPT
+   ===================================================== */
+
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwvFYmRUD7focRpfqty7v6KfBvIszvkjKmtZz-ZvyOhdb9CZ0vIkRceO-ClkgXYc8Z3/exec";
+
+
+/* =====================================================
+   DATA 15 TANTANGAN
+   ===================================================== */
 
 const challenges = [
-{q:"Kamu ingin semua paragraf memiliki teks berwarna biru. Selector yang tepat adalah...", code:"p { color: blue; }", opts:["p","paragraph",".p","#p"], a:0, exp:"Selector p memilih semua elemen <p>."},
-{q:"Sebuah tombol memiliki class 'btn'. CSS mana yang benar untuk memberi warna latar biru?", code:".btn { background-color: blue; }", opts:["btn { background-color: blue; }",".btn { background-color: blue; }","#btn { background-color: blue; }","button.btn { color: blue; }"], a:1, exp:"Class diawali titik (.)."},
-{q:"ID elemen adalah 'judul'. Selector CSS yang benar adalah...", code:"<h1 id=\"judul\">Profil Siswa</h1>", opts:[".judul","#judul","judul","*judul"], a:1, exp:"ID diawali tanda #."},
-{q:"Kamu ingin jarak antara isi kartu dan garis tepi kartu diperbesar. Properti yang digunakan adalah...", code:".card { ______: 20px; }", opts:["margin","padding","border","gap"], a:1, exp:"Padding adalah ruang di dalam border, antara content dan border."},
-{q:"Kamu ingin memberi jarak antara dua kartu yang bersebelahan. Properti yang paling sesuai adalah...", code:".card { ______: 20px; }", opts:["padding","margin","color","font-size"], a:1, exp:"Margin mengatur ruang di luar elemen."},
-{q:"Hasil render manakah yang sesuai dengan CSS berikut?", code:"h1 { color: red; font-size: 30px; }", opts:["Judul merah ukuran 30px","Judul biru ukuran 30px","Semua teks merah","Judul merah dengan background merah"], a:0, exp:"color mengubah warna teks dan font-size mengubah ukuran teks."},
-{q:"Seorang siswa ingin CSS digunakan oleh banyak halaman HTML. Metode yang paling tepat adalah...", code:"<link rel=\"stylesheet\" href=\"style.css\">", opts:["Inline CSS","Internal CSS","External CSS","JavaScript"], a:2, exp:"External CSS disimpan di file .css dan dapat digunakan banyak halaman."},
-{q:"Manakah deklarasi CSS yang benar untuk membuat sudut kartu membulat?", code:".card { ______: 12px; }", opts:["border-radius","border-round","radius-border","corner"], a:0, exp:"border-radius membuat sudut elemen menjadi membulat."},
-{q:"Kamu ingin teks berada di tengah secara horizontal. Deklarasi yang tepat adalah...", code:".title { ______: center; }", opts:["align-text","text-align","text-center","font-align"], a:1, exp:"text-align: center; digunakan untuk meratakan teks ke tengah."},
-{q:"Perhatikan kode berikut. Apa yang terjadi pada tombol?", code:".btn {\n  background: #2563eb;\n  color: white;\n  padding: 10px 20px;\n}", opts:["Tombol punya latar biru, teks putih, dan ruang dalam","Tombol hanya berubah ukuran font","Teks menjadi biru dan background putih","Tidak ada perubahan"], a:0, exp:"Ketiga deklarasi tersebut mengatur background, warna teks, dan padding."},
-{q:"HTML berikut menggunakan class card. CSS mana yang paling tepat untuk membuat kartu memiliki border?", code:"<div class=\"card\">Profil Siswa</div>", opts:["card { border: 1px solid black; }",".card { border: 1px solid black; }","#card { border: 1px solid black; }","*card { border: 1px solid black; }"], a:1, exp:"Karena card adalah class, selector harus .card."},
-{q:"Dalam Box Model CSS, urutan dari bagian paling dalam ke luar adalah...", code:"CONTENT → ? → BORDER → MARGIN", opts:["Margin → Padding","Padding → Margin","Border → Padding","Padding → Content"], a:1, exp:"Urutannya: content, padding, border, margin."},
-{q:"Kamu ingin membuat tombol berubah warna ketika kursor diarahkan ke tombol. Pseudo-class yang digunakan adalah...", code:".btn:hover { background: green; }", opts:[":active",":focus",":hover",":visited"], a:2, exp:":hover aktif ketika pointer/kursor berada di atas elemen."},
-{q:"Seorang siswa menulis CSS tetapi tampilan tidak berubah karena file CSS belum terhubung ke HTML. Baris yang perlu ditambahkan di <head> adalah...", code:"<head>\n  ______\n</head>", opts:["<css src=\"style.css\">","<link rel=\"stylesheet\" href=\"style.css\">","<script src=\"style.css\"></script>","<style src=\"style.css\"></style>"], a:1, exp:"File CSS eksternal dihubungkan menggunakan elemen link."},
-{q:"Tantangan desain: kamu membuat kartu profil siswa. Manakah kombinasi CSS yang paling masuk akal untuk kartu sederhana dan rapi?", code:".card {\n  padding: 20px;\n  border: 1px solid #ddd;\n  border-radius: 12px;\n}", opts:["Padding, border, border-radius","Margin saja","Color saja","Font-size saja"], a:0, exp:"Padding memberi ruang dalam, border memberi batas, dan border-radius membuat sudut membulat."}
+
+    {
+        q: "CSS digunakan terutama untuk apa?",
+        opts: [
+            "Membuat struktur halaman",
+            "Mengatur tampilan halaman",
+            "Membuat database",
+            "Menyimpan file"
+        ],
+        a: 1,
+        exp: "CSS digunakan untuk mengatur tampilan dan gaya halaman HTML."
+    },
+
+    {
+        q: "Sintaks CSS yang benar adalah...",
+        opts: [
+            "selector { property: value; }",
+            "selector = property : value",
+            "<selector> property=value",
+            "css(selector, property, value)"
+        ],
+        a: 0,
+        exp: "Sintaks dasar CSS adalah selector { property: value; }."
+    },
+
+    {
+        q: "Properti CSS untuk mengubah warna teks adalah...",
+        opts: [
+            "background",
+            "font-size",
+            "color",
+            "text-style"
+        ],
+        a: 2,
+        exp: "Properti color digunakan untuk mengatur warna teks."
+    },
+
+    {
+        q: "Properti untuk mengubah ukuran teks adalah...",
+        opts: [
+            "font-size",
+            "text-color",
+            "size-font",
+            "font-color"
+        ],
+        a: 0,
+        exp: "font-size digunakan untuk mengatur ukuran teks."
+    },
+
+    {
+        q: "CSS eksternal biasanya dihubungkan dengan elemen...",
+        opts: [
+            "<style>",
+            "<css>",
+            "<link>",
+            "<script>"
+        ],
+        a: 2,
+        exp: "File CSS eksternal dihubungkan menggunakan elemen link."
+    },
+
+    {
+        q: "Selector .siswa digunakan untuk memilih...",
+        opts: [
+            "ID siswa",
+            "Class siswa",
+            "Tag siswa",
+            "File siswa"
+        ],
+        a: 1,
+        exp: "Tanda titik (.) digunakan untuk memilih class."
+    },
+
+    {
+        q: "Selector #judul digunakan untuk memilih...",
+        opts: [
+            "Class judul",
+            "Tag judul",
+            "ID judul",
+            "File judul"
+        ],
+        a: 2,
+        exp: "Tanda # digunakan untuk memilih ID."
+    },
+
+    {
+        q: "Properti yang tepat untuk memberi jarak DI DALAM elemen adalah...",
+        opts: [
+            "margin",
+            "padding",
+            "border",
+            "display"
+        ],
+        a: 1,
+        exp: "Padding adalah jarak antara isi elemen dan border."
+    },
+
+    {
+        q: "Properti yang tepat untuk memberi jarak DI LUAR elemen adalah...",
+        opts: [
+            "padding",
+            "margin",
+            "border",
+            "content"
+        ],
+        a: 1,
+        exp: "Margin adalah jarak di luar border elemen."
+    },
+
+    {
+        q: "Manakah yang membuat sudut kotak menjadi membulat?",
+        opts: [
+            "border-radius",
+            "box-radius",
+            "corner",
+            "radius-border"
+        ],
+        a: 0,
+        exp: "border-radius digunakan untuk membuat sudut membulat."
+    },
+
+    {
+        q: "Perhatikan kode berikut:\n\n.button { color: red; }\n\nSelector tersebut adalah...",
+        code: ".button {\n    color: red;\n}",
+        opts: [
+            "Element selector",
+            "Class selector",
+            "ID selector",
+            "Universal selector"
+        ],
+        a: 1,
+        exp: "Selector .button merupakan class selector."
+    },
+
+    {
+        q: "Perhatikan kode berikut:\n\n#header { background: blue; }\n\nApa fungsi #header?",
+        code: "#header {\n    background: blue;\n}",
+        opts: [
+            "Memilih class header",
+            "Memilih tag header",
+            "Memilih ID header",
+            "Membuat file header"
+        ],
+        a: 2,
+        exp: "Selector dengan tanda # memilih elemen berdasarkan ID."
+    },
+
+    {
+        q: "Kamu ingin membuat tombol dengan latar belakang biru. CSS yang tepat adalah...",
+        code: ".btn {\n    background-color: blue;\n}",
+        opts: [
+            "Mengubah warna latar tombol",
+            "Mengubah ukuran tombol",
+            "Menghapus tombol",
+            "Mengubah teks menjadi biru"
+        ],
+        a: 0,
+        exp: "background-color digunakan untuk mengatur warna latar belakang."
+    },
+
+    {
+        q: "Kamu membuat kartu profil siswa. Kombinasi CSS yang paling masuk akal adalah...",
+        opts: [
+            "padding, border, border-radius",
+            "margin saja",
+            "color saja",
+            "font-size saja"
+        ],
+        a: 0,
+        exp: "Padding memberi ruang dalam, border memberi batas, dan border-radius membuat sudut membulat."
+    },
+
+    {
+        q: "Urutan Box Model CSS dari bagian paling dalam ke luar adalah...",
+        opts: [
+            "Margin → Border → Padding → Content",
+            "Content → Padding → Border → Margin",
+            "Border → Content → Margin → Padding",
+            "Padding → Content → Border → Margin"
+        ],
+        a: 1,
+        exp: "Urutan Box Model adalah Content → Padding → Border → Margin."
+    }
+
 ];
 
-// Bobot: 10 soal x 7 poin + 5 soal x 6 poin = 100
-const weights = challenges.map((_,i)=> i < 10 ? 7 : 6);
-let player="", current=0, answers=Array(challenges.length).fill(null), finished=false;
 
-const $ = id => document.getElementById(id);
-$("startBtn").addEventListener("click", startGame);
-$("prevBtn").addEventListener("click", prev);
-$("nextBtn").addEventListener("click", next);
-$("restartBtn").addEventListener("click", () => location.reload());
+/* =====================================================
+   BOBOT NILAI
+   10 soal × 7 poin = 70
+   5 soal × 6 poin = 30
+   TOTAL = 100
+   ===================================================== */
 
-function startGame(){
-  const n=$("name").value.trim();
-  if(!n){alert("Masukkan nama terlebih dahulu.");$("name").focus();return;}
-  player=n; current=0; answers.fill(null); finished=false;
-  $("start").classList.add("hidden"); $("game").classList.remove("hidden");
-  $("playerName").textContent=player; render();
+const weights = challenges.map(
+    (_, i) => i < 10 ? 7 : 6
+);
+
+
+/* =====================================================
+   VARIABEL GAME
+   ===================================================== */
+
+let player = "";
+let current = 0;
+
+let answers = Array(
+    challenges.length
+).fill(null);
+
+let finished = false;
+
+
+/* =====================================================
+   FUNGSI BANTUAN
+   ===================================================== */
+
+function $(id) {
+    return document.getElementById(id);
 }
-function render(){
-  const c=challenges[current];
-  $("counter").textContent=`Tantangan ${current+1} dari ${challenges.length}`;
-  $("points").textContent=`${weights[current]} poin`;
-  $("progressBar").style.width=((current+1)/challenges.length*100)+"%";
-  $("liveScore").textContent=score();
-  $("prevBtn").disabled=current===0;
-  $("nextBtn").textContent=answers[current]===null ? "Pilih Jawaban" : (current===challenges.length-1?"Lihat Hasil":"Lanjut");
-  let h=`<div class="question">${c.q}</div>`;
-  if(c.code) h+=`<div class="code">${escapeHtml(c.code)}</div>`;
-  h+=`<div class="options">${c.opts.map((o,i)=>`<button type="button" class="option ${answers[current]===i?'selected':''}" data-i="${i}">${String.fromCharCode(65+i)}. ${escapeHtml(o)}</button>`).join("")}</div>`;
-  $("challenge").innerHTML=h;
-  $("feedback").className="feedback hidden";
-  document.querySelectorAll(".option").forEach(b=>b.addEventListener("click",()=>select(+b.dataset.i)));
+
+
+/* =====================================================
+   MULAI GAME
+   ===================================================== */
+
+$("startBtn").addEventListener(
+    "click",
+    startGame
+);
+
+function startGame() {
+
+    const name =
+        $("name").value.trim();
+
+    if (!name) {
+        alert(
+            "Masukkan nama terlebih dahulu."
+        );
+        return;
+    }
+
+    player = name;
+    current = 0;
+
+    answers.fill(null);
+
+    finished = false;
+
+    $("start").classList.add(
+        "hidden"
+    );
+
+    $("game").classList.remove(
+        "hidden"
+    );
+
+    $("playerName").textContent =
+        player;
+
+    render();
 }
-function select(i){
-  answers[current]=i; render();
-  const c=challenges[current];
-  $("nextBtn").textContent=current===challenges.length-1?"Lihat Hasil":"Periksa & Lanjut";
+
+
+/* =====================================================
+   MENAMPILKAN SOAL
+   ===================================================== */
+
+function render() {
+
+    const c =
+        challenges[current];
+
+    $("counter").textContent =
+        `Tantangan ${current + 1} dari ${challenges.length}`;
+
+    $("points").textContent =
+        `${weights[current]} poin`;
+
+    $("progressBar").style.width =
+        `${((current + 1) / challenges.length) * 100}%`;
+
+    $("liveScore").textContent =
+        score();
+
+    $("prevBtn").disabled =
+        current === 0;
+
+    $("nextBtn").textContent =
+        current === challenges.length - 1
+            ? "Lihat Hasil"
+            : "Lanjut →";
+
+
+    let html = "";
+
+    html += `
+        <h2>${escapeHtml(c.q)}</h2>
+    `;
+
+
+    if (c.code) {
+
+        html += `
+            <div class="code-box">${escapeHtml(c.code)}</div>
+        `;
+
+    }
+
+
+    html += `
+        <div>
+    `;
+
+
+    c.opts.forEach(
+        (option, index) => {
+
+            const selected =
+                answers[current] === index
+                    ? "selected"
+                    : "";
+
+            html += `
+                <button
+                    class="option ${selected}"
+                    data-index="${index}"
+                >
+                    ${String.fromCharCode(65 + index)}.
+                    ${escapeHtml(option)}
+                </button>
+            `;
+        }
+    );
+
+
+    html += `
+        </div>
+    `;
+
+
+    $("challenge").innerHTML =
+        html;
+
+
+    $("feedback").className =
+        "feedback hidden";
+
+
+    document
+        .querySelectorAll(".option")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectAnswer(
+                        Number(
+                            button.dataset.index
+                        )
+                    );
+
+                }
+            );
+
+        });
 }
-function next(){
-  if(answers[current]===null){$("feedback").className="feedback wrong";$("feedback").textContent="Pilih salah satu jawaban terlebih dahulu.";return;}
-  if(current<challenges.length-1){current++;render();} else finish();
+
+
+/* =====================================================
+   MEMILIH JAWABAN
+   ===================================================== */
+
+function selectAnswer(index) {
+
+    answers[current] =
+        index;
+
+    render();
 }
-function prev(){if(current>0){current--;render();}}
-function score(){return answers.reduce((s,a,i)=>s+(a===challenges[i].a?weights[i]:0),0)}
-function finish(){
-  finished=true;
-  $("game").classList.add("hidden"); $("result").classList.remove("hidden");
-  const s=score(); $("finalScore").textContent=s;
-  $("resultName").textContent=`Nama: ${player}`;
-  $("resultMessage").textContent=s>=90?"Luar biasa!":s>=75?"Bagus! Terus latih penerapan CSS.":s>=60?"Cukup baik. Tinjau kembali selector dan box model.":"Tetap semangat. Pelajari kembali materi lalu coba lagi.";
-  let rows="<table><tr><th>No.</th><th>Hasil</th><th>Poin</th></tr>";
-  answers.forEach((a,i)=>rows+=`<tr><td>${i+1}</td><td>${a===challenges[i].a?"Benar":"Salah"}</td><td>${a===challenges[i].a?weights[i]:0}/${weights[i]}</td></tr>`);
-  $("review").innerHTML=rows+"</table>";
-  saveToSheet(s);
+
+
+/* =====================================================
+   TOMBOL SEBELUMNYA
+   ===================================================== */
+
+$("prevBtn").addEventListener(
+    "click",
+    () => {
+
+        if (current > 0) {
+
+            current--;
+
+            render();
+        }
+
+    }
+);
+
+
+/* =====================================================
+   TOMBOL BERIKUTNYA
+   ===================================================== */
+
+$("nextBtn").addEventListener(
+    "click",
+    next
+);
+
+function next() {
+
+    if (answers[current] === null) {
+
+        $("feedback").className =
+            "feedback wrong";
+
+        $("feedback").textContent =
+            "Pilih salah satu jawaban terlebih dahulu.";
+
+        return;
+    }
+
+
+    if (
+        current <
+        challenges.length - 1
+    ) {
+
+        current++;
+
+        render();
+
+    } else {
+
+        finish();
+
+    }
 }
-function saveToSheet(s){
-  const status=$("saveStatus");
-  if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_URL")){
-    status.className="feedback"; status.innerHTML="<b>Mode demo:</b> hasil belum dikirim ke Google Sheets. Guru perlu memasukkan URL Web App Apps Script pada kode game.";
-    return;
-  }
-  const payload={nama:player,skor:s,waktu:new Date().toISOString(),jawaban:answers.map((a,i)=>a===challenges[i].a?"Benar":"Salah").join(", ")};
-  fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
-  .then(()=>{status.className="feedback correct";status.textContent="✓ Hasil berhasil dikirim ke Google Sheets.";})
-  .catch(()=>{status.className="feedback wrong";status.textContent="Hasil game selesai, tetapi pengiriman ke Google Sheets gagal. Coba periksa URL Apps Script.";});
+
+
+/* =====================================================
+   HITUNG SKOR
+   ===================================================== */
+
+function score() {
+
+    return answers.reduce(
+        (total, answer, i) => {
+
+            if (
+                answer ===
+                challenges[i].a
+            ) {
+
+                return total +
+                    weights[i];
+
+            }
+
+            return total;
+
+        },
+        0
+    );
 }
-function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+
+
+/* =====================================================
+   SELESAIKAN GAME
+   ===================================================== */
+
+function finish() {
+
+    finished = true;
+
+    $("game").classList.add(
+        "hidden"
+    );
+
+    $("result").classList.remove(
+        "hidden"
+    );
+
+
+    const finalScore =
+        score();
+
+
+    $("finalScore").textContent =
+        finalScore;
+
+
+    $("resultName").textContent =
+        `Nama: ${player}`;
+
+
+    let message = "";
+
+    if (finalScore >= 90) {
+
+        message =
+            "Luar biasa! Kamu sangat baik dalam menerapkan CSS.";
+
+    } else if (finalScore >= 75) {
+
+        message =
+            "Bagus! Terus latih penerapan CSS.";
+
+    } else if (finalScore >= 60) {
+
+        message =
+            "Cukup baik. Tinjau kembali selector dan Box Model.";
+
+    } else {
+
+        message =
+            "Tetap semangat. Pelajari kembali materi CSS lalu coba lagi.";
+
+    }
+
+
+    $("resultMessage").textContent =
+        message;
+
+
+    let rows = "";
+
+
+    answers.forEach(
+        (answer, i) => {
+
+            const correct =
+                answer ===
+                challenges[i].a;
+
+
+            rows += `
+                <div class="review-item">
+
+                    <b>
+                        ${i + 1}.
+                        ${escapeHtml(
+                            challenges[i].q
+                        )}
+                    </b>
+
+                    <br>
+
+                    <span class="${
+                        correct
+                            ? "correct-text"
+                            : "wrong-text"
+                    }">
+
+                        ${
+                            correct
+                                ? "✓ Benar"
+                                : "✗ Salah"
+                        }
+
+                    </span>
+
+                    <br>
+
+                    <span class="small">
+
+                        Jawaban benar:
+                        ${String.fromCharCode(
+                            65 + challenges[i].a
+                        )}.
+                        ${escapeHtml(
+                            challenges[i].opts[
+                                challenges[i].a
+                            ]
+                        )}
+
+                    </span>
+
+                </div>
+            `;
+
+        }
+    );
+
+
+    $("review").innerHTML =
+        rows;
+
+
+    saveToSheet(finalScore);
+}
+
+
+/* =====================================================
+   KIRIM HASIL KE GOOGLE SHEETS
+   ===================================================== */
+
+function saveToSheet(finalScore) {
+
+    const status =
+        $("saveStatus");
+
+
+    if (
+        !GOOGLE_SCRIPT_URL ||
+        GOOGLE_SCRIPT_URL.includes(
+            "PASTE_URL"
+        )
+    ) {
+
+        status.className =
+            "feedback wrong";
+
+        status.innerHTML =
+            "<b>Mode demo:</b> hasil belum dikirim ke Google Sheets. " +
+            "Guru perlu memasukkan URL Web Apps Script pada kode.";
+
+        return;
+    }
+
+
+    const payload = {
+
+        nama: player,
+
+        skor: finalScore,
+
+        waktu:
+            new Date().toISOString(),
+
+        jawaban:
+            answers.map(
+                (answer, i) =>
+                    answer ===
+                    challenges[i].a
+                        ? "Benar"
+                        : "Salah"
+            ).join(", ")
+
+    };
+
+
+    fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+
+            body:
+                JSON.stringify(payload)
+
+        }
+    )
+    .then(() => {
+
+        status.className =
+            "feedback correct";
+
+        status.textContent =
+            "✓ Hasil berhasil dikirim ke Google Sheets.";
+
+    })
+    .catch(error => {
+
+        console.error(error);
+
+        status.className =
+            "feedback wrong";
+
+        status.textContent =
+            "Hasil game selesai, tetapi pengiriman ke Google Sheets gagal. " +
+            "Periksa URL Apps Script.";
+
+    });
+}
+
+
+/* =====================================================
+   MAIN LAGI
+   ===================================================== */
+
+$("restartBtn").addEventListener(
+    "click",
+    () => {
+
+        location.reload();
+
+    }
+);
+
+
+/* =====================================================
+   PENGAMAN HTML
+   ===================================================== */
+
+function escapeHtml(text) {
+
+    return String(text)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
 </script>
+
 </body>
 </html>
